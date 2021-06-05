@@ -16,6 +16,10 @@ class StudentController extends Controller
         return view('Student.index');
     }
 
+    public function addStudent(){
+        return view('Student.createnewstudent');
+    }
+
     public function save(Request $request)
     {
         $request->validate([
