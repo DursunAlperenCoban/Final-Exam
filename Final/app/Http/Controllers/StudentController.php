@@ -16,6 +16,28 @@ class StudentController extends Controller
         return view('Student.index');
     }
 
+    public function save(Request $request)
+    {
+        $request->validate([
+
+            'name' => 'required'
+            'surname' => 'required'
+            'department' => 'required'
+        ])
+
+        $student = new Student();
+        $student->name = $request->name;
+        $student->surname = $request->surname;
+        $student->department = $request->department;
+        $save = $student->save();
+
+        if ($save) {
+            return back()->with('success', 'Student added...')
+        } else {
+            return back()->with('fail', 'Please try again...')
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
